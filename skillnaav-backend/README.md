@@ -1,1 +1,0 @@
-# skillnaav-complete-backend
