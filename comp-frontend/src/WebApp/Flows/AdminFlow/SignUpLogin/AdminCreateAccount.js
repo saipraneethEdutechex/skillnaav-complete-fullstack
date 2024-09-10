@@ -32,10 +32,10 @@ const AdminCreateAccount = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5100/api/users/register",
+        "/api2/api/users/register",
         values
       );
-      navigate("/admin-profile-form");
+      navigate("/admin-main-page");
       localStorage.setItem("adminInfo", JSON.stringify(response.data));
     } catch (error) {
       if (
