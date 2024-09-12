@@ -35,7 +35,9 @@ function App() {
 
   const getSkillNaavData = async () => {
     try {
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       dispatch(SetSkillNaavData(response.data));
       dispatch(HideLoading());
     } catch (error) {

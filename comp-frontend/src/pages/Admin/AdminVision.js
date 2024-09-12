@@ -61,7 +61,9 @@ const AdminVision = () => {
 
   const fetchSkillnaavData = useCallback(async () => {
     try {
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       setSkillnaavData(response.data);
       if (response.data.visionhead && response.data.visionhead.length > 0) {
         setImgUrl(response.data.visionhead[0].visionImg || "");
@@ -79,7 +81,7 @@ const AdminVision = () => {
         if (modalData.type === "editHead") {
           const { _id } = modalData.data;
           response = await axios.put(
-            `/api/skillnaav/update-visionhead/${_id}`,
+            `/website/api/skillnaav/update-visionhead/${_id}`,
             {
               ...values,
               visionImg: imgUrl, // Include uploaded image URL in update
@@ -89,14 +91,17 @@ const AdminVision = () => {
           const { _id } = modalData.data;
           values._id = _id;
           response = await axios.put(
-            `/api/skillnaav/update-visionpoint/${_id}`,
+            `/website/api/skillnaav/update-visionpoint/${_id}`,
             values
           );
         } else if (modalData.type === "addPoint") {
-          response = await axios.post("/api/skillnaav/add-visionpoint", {
-            ...values,
-            visionImg: imgUrl, // Include uploaded image URL in creation
-          });
+          response = await axios.post(
+            "/website/api/skillnaav/add-visionpoint",
+            {
+              ...values,
+              visionImg: imgUrl, // Include uploaded image URL in creation
+            }
+          );
         }
 
         if (response.data.success) {
@@ -119,7 +124,7 @@ const AdminVision = () => {
     async (visionpointId) => {
       try {
         const response = await axios.delete(
-          `/api/skillnaav/delete-visionpoint/${visionpointId}`
+          `/website/api/skillnaav/delete-visionpoint/${visionpointId}`
         );
         if (response.data.success) {
           message.success(response.data.message);

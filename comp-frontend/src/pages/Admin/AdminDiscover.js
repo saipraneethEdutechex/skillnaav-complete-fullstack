@@ -38,7 +38,7 @@ const AdminDiscover = () => {
     try {
       dispatch(ShowLoading());
       const response = await axios.put(
-        `/api/skillnaav/update-discover/${skillnaavData.discover[0]._id}`,
+        `/website/api/skillnaav/update-discover/${skillnaavData.discover[0]._id}`,
         {
           ...values,
           imgUrl: discoverImgUrl,
@@ -104,7 +104,7 @@ const AdminDiscover = () => {
         payload: [...compImageUrls, downloadURL],
       });
 
-      await axios.post("/api/skillnaav/add-discover-comp-img", {
+      await axios.post("/website/api/skillnaav/add-discover-comp-img", {
         imageUrl: downloadURL,
       });
       message.success("Company image uploaded successfully");
@@ -119,7 +119,7 @@ const AdminDiscover = () => {
   const handleImageRemove = async (urlToRemove) => {
     try {
       const response = await axios.delete(
-        `/api/skillnaav/delete-discover-comp-img/${encodeURIComponent(
+        `/website/api/skillnaav/delete-discover-comp-img/${encodeURIComponent(
           urlToRemove
         )}`
       );

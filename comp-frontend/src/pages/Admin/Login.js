@@ -23,7 +23,10 @@ function Login() {
   const login = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post("/api/skillnaav/admin-login", user);
+      const response = await axios.post(
+        "/website/api/skillnaav/admin-login",
+        user
+      );
       dispatch(HideLoading());
 
       if (response.data.success) {

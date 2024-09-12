@@ -20,7 +20,9 @@ function AdminFaqs() {
 
   const fetchFaqData = useCallback(async () => {
     try {
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       setFaqData(response.data);
     } catch (error) {
       console.error("Error fetching FAQ data:", error);
@@ -44,7 +46,7 @@ function AdminFaqs() {
     async (faqCardId) => {
       try {
         const response = await axios.delete(
-          `/api/skillnaav/delete-faqcard/${faqCardId}`
+          `/website/api/skillnaav/delete-faqcard/${faqCardId}`
         );
         if (response.data.success) {
           message.success(response.data.message);
@@ -63,7 +65,7 @@ function AdminFaqs() {
     async (values) => {
       try {
         const response = await axios.put(
-          `/api/skillnaav/update-faqcard/${values._id}`,
+          `/website/api/skillnaav/update-faqcard/${values._id}`,
           values
         );
         if (response.data.success) {
@@ -86,7 +88,10 @@ function AdminFaqs() {
   const onFinishAdd = useCallback(
     async (values) => {
       try {
-        const response = await axios.post("/api/skillnaav/add-faqcard", values);
+        const response = await axios.post(
+          "/website/api/skillnaav/add-faqcard",
+          values
+        );
         if (response.data.success) {
           message.success(response.data.message);
           setModalVisible((prevState) => ({
@@ -109,11 +114,14 @@ function AdminFaqs() {
     async (values) => {
       try {
         const { _id } = faqData.faq[0];
-        const response = await axios.post("/api/skillnaav/update-faqheading", {
-          _id,
-          faqheading: values.faqheading,
-          faqsubheading: values.faqsubheading,
-        });
+        const response = await axios.post(
+          "/website/api/skillnaav/update-faqheading",
+          {
+            _id,
+            faqheading: values.faqheading,
+            faqsubheading: values.faqsubheading,
+          }
+        );
         if (response.data.success) {
           message.success(response.data.message);
           setModalVisible((prevState) => ({

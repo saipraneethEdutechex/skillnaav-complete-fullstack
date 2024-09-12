@@ -31,10 +31,7 @@ const UserCreateAccount = () => {
   // Function to handle form submission
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await axios.post(
-        "/api2/api/users/register",
-        values
-      );
+      const response = await axios.post("/webapp/api/users/register", values);
       navigate("/user-profile-form");
       localStorage.setItem("userInfo", JSON.stringify(response.data));
     } catch (error) {

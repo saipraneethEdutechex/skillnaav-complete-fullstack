@@ -24,7 +24,9 @@ function AdminFeatures() {
   const fetchSkillnaavData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       setSkillnaavData(response.data);
     } catch (error) {
       message.error("Failed to fetch data. Please try again later.");
@@ -58,7 +60,7 @@ function AdminFeatures() {
         featureImg: imageUrl,
       };
       const response = await axios.put(
-        `/api/skillnaav/update-feature/${selectedFeature._id}`,
+        `/website/api/skillnaav/update-feature/${selectedFeature._id}`,
         payload
       );
       if (response.data.success) {
@@ -85,7 +87,10 @@ function AdminFeatures() {
     try {
       setLoading(true);
       const payload = { ...values, featureImg: imageUrl };
-      const response = await axios.post("/api/skillnaav/add-feature", payload);
+      const response = await axios.post(
+        "/website/api/skillnaav/add-feature",
+        payload
+      );
       if (response.data.success) {
         message.success(response.data.message);
         setShowAddModal(false);
@@ -109,7 +114,7 @@ function AdminFeatures() {
     try {
       setLoading(true);
       const response = await axios.delete(
-        `/api/skillnaav/delete-feature/${featureId}`
+        `/website/api/skillnaav/delete-feature/${featureId}`
       );
       if (response.data.success) {
         message.success(response.data.message);

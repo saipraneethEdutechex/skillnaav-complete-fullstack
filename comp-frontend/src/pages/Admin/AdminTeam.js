@@ -24,7 +24,9 @@ const AdminTeam = () => {
   const fetchSkillnaavData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       setSkillnaavData(response.data.teammember);
       setLoading(false);
     } catch (error) {
@@ -62,7 +64,7 @@ const AdminTeam = () => {
     const teamData = { ...values, image: imgUrl };
     try {
       const response = await axios.post(
-        "/api/skillnaav/add-teammember",
+        "/website/api/skillnaav/add-teammember",
         teamData
       );
       message.success(response.data.message);
@@ -81,7 +83,7 @@ const AdminTeam = () => {
     const teamData = { ...values, image: imgUrl || selectedTeamMember.image };
     try {
       const response = await axios.put(
-        `/api/skillnaav/update-teammember/${selectedTeamMember._id}`,
+        `/website/api/skillnaav/update-teammember/${selectedTeamMember._id}`,
         teamData
       );
       message.success(response.data.message);
@@ -98,7 +100,7 @@ const AdminTeam = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/skillnaav/delete-teammember/${id}`);
+      await axios.delete(`/website/api/skillnaav/delete-teammember/${id}`);
       message.success("Team member deleted successfully");
       fetchSkillnaavData();
     } catch (error) {

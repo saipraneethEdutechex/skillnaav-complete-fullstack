@@ -31,10 +31,7 @@ const AdminCreateAccount = () => {
   // Function to handle form submission
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await axios.post(
-        "/api2/api/users/register",
-        values
-      );
+      const response = await axios.post("/webapp/api/users/register", values);
       navigate("/admin-main-page");
       localStorage.setItem("adminInfo", JSON.stringify(response.data));
     } catch (error) {

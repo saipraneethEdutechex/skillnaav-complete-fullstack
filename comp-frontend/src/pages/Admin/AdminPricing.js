@@ -20,7 +20,9 @@ function AdminPricing() {
 
   const fetchPricingData = async () => {
     try {
-      const response = await axios.get("/api/skillnaav/get-skillnaav-data");
+      const response = await axios.get(
+        "/website/api/skillnaav/get-skillnaav-data"
+      );
       setPricingData(response.data); // Assuming response.data has pricing and pricingcard
     } catch (error) {
       console.error("Error fetching pricing data:", error);
@@ -50,7 +52,7 @@ function AdminPricing() {
   const onDelete = async (pricingCardId) => {
     try {
       const response = await axios.delete(
-        `/api/skillnaav/delete-pricingcard/${pricingCardId}`
+        `/website/api/skillnaav/delete-pricingcard/${pricingCardId}`
       );
       if (response.data.success) {
         message.success(response.data.message);
@@ -66,7 +68,7 @@ function AdminPricing() {
   const onFinishEdit = async (values) => {
     try {
       const response = await axios.put(
-        `/api/skillnaav/update-pricingcard/${values._id}`,
+        `/website/api/skillnaav/update-pricingcard/${values._id}`,
         values
       );
 
@@ -85,7 +87,7 @@ function AdminPricing() {
   const onFinishAdd = async (values) => {
     try {
       const response = await axios.post(
-        "/api/skillnaav/add-pricingcard",
+        "/website/api/skillnaav/add-pricingcard",
         values
       );
       if (response.data.success) {
@@ -104,10 +106,13 @@ function AdminPricing() {
   const onFinishEditHeading = async (values) => {
     try {
       const { _id } = pricing[0];
-      const response = await axios.post("/api/skillnaav/update-priceheading", {
-        _id,
-        priceheading: values.priceheading,
-      });
+      const response = await axios.post(
+        "/website/api/skillnaav/update-priceheading",
+        {
+          _id,
+          priceheading: values.priceheading,
+        }
+      );
       if (response.data.success) {
         message.success(response.data.message);
         setModalVisible({ ...modalVisible, editHeading: false });
